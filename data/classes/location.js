@@ -1,5 +1,5 @@
 export const LOCATION = {
-    okalonia: {settlement: ["Поселение Карута", ""], },
+    okalonia: {q: ["Поселение Карута", ""], },
     santuronianforest: [],
     scarlet_kingdoms: [],
     northern_icegard: [],
