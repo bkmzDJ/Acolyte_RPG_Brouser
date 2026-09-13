@@ -17,40 +17,40 @@ class Player {
         this.int = intelligence
         this.end = endurance
         this.location = location
-        this.mag = 0
         this.arm = 100
-        this.aplyBonus()
         this.stats()
     }
     stats(){
-        this.hp = Math.floor(this.end*9.9)
-        this.damage = Math.floor(this.str*0.9)
-        this.mindamage = Math.floor(this.damage - (this.damage/100)*15)
-        this.mag = Math.floor(this.int*0.9)
-        this.phresistance = Math.floor((this.armor * 100)/(this.armor + 1450)) // УБАЛАНСИТЬ ПОЗЖЕ 
-        this.crete = Math.floor((this.agl * 100)/(this.agl + 1450))
-    }
-    aplyBonus(){
-        if (this.race) {
+        if (this.race && this.role) {
             const a = this.race.bonus
-            this.str += Math.floor((this.str/100)*a.str)
-            this.agl += Math.floor((this.agl/100)*a.agl)
-            this.int += Math.floor((this.int/100)*a.int)
-            this.end += Math.floor((this.end/100)*a.end)
+            const str = this.str
+            const agl = this.agl
+            const int = this.int
+            const end = this.end
+            this.str += Math.floor((str/100)*(a.str || 0))
+            this.agl += Math.floor((agl/100)*(a.agl || 0))
+            this.int += Math.floor((int/100)*(a.int || 0))
+            this.end += Math.floor((end/100)*(a.end || 0))
+
+            const b = this.role.bonus
+            console.log(b);
+            this.str += Math.floor((str/100)*(b.str || 0))
+            this.agl += Math.floor((agl/100)*(b.agl || 0))
+            this.int += Math.floor((int/100)*(b.int || 0))
+            this.end += Math.floor((end/100)*(b.end || 0))
+            this.arm += Math.floor((this.arm/100)*(b.arm || 0))
+
+            this.hp = Math.floor(this.end*9.9)
+            this.damage = Math.floor(this.str*0.9)
+            this.mindamage = Math.floor(this.damage - (this.damage/100)*15)
+            this.mag = Math.floor(this.int*0.9)
+            this.phresistance = Math.floor((this.arm * 100)/(this.arm + 1450)) // УБАЛАНСИТЬ ПОЗЖЕ 
+            this.crete = Math.floor((this.agl * 100)/(this.agl + 1450))
+            this.mag += Math.floor((this.mag/100)*(b.mag || 0))
         }
-        if (this.role) {
-            const a = this.role.bonus
-            console.log(a);
-            this.str += Math.floor((this.str/100)*a.str)
-            this.agl += Math.floor((this.agl/100)*a.agl)
-            this.int += Math.floor((this.int/100)*a.int)
-            this.end += Math.floor((this.end/100)*a.end)
-            this.mag += Math.floor((this.mag/100)*a.mag)
-            this.arm += Math.floor((this.arm/100)*a.arm)
-        }
-    }
+    }  
 }
-const player = new Player ("Вурдалак", RACES.undead, CLASS.knightofdecay, 15, 15, 15, 15, LOCATION.okalonia)
+const player = new Player ("Вурдалак", RACES.highelf, CLASS.mage, 15, 15, 15, 15, LOCATION.okalonia)
 console.log(`
 ╔══════════════════════════════════════╗
 ║           🎮 ПЕРСОНАЖ                ║
@@ -69,6 +69,7 @@ console.log(`
   ❤️ Выносливость: ${player.end}
 
   🛡️ Броня:        ${player.arm}
+  ❣️ Физ. сопротивление: ${player.phresistance}
   💥 Крит. шанс:        ${player.crete}
   💠 Маг. урон:        ${player.mag}
 

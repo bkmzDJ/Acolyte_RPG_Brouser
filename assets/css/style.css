@@ -2,10 +2,9 @@
     font-family: "Satyr";
     src: url(../font/SatyrSP\ Basic.otf);
 }
-*{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+@font-face {
+    font-family: "def";
+    src: url(../font/GardensC.otf);
 }
 :root{
     --black: #110b11;
@@ -16,6 +15,14 @@
     --yellow: #A38F5A;
     --gray: #5F664B;
 }
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: var(--white);
+    font-family: "def";
+}
+
 .menu{
     min-height: 100vh;
     background-color: var(--black);
@@ -45,8 +52,53 @@
     height: 50vh;
     border-radius: 1vh;
     transition: .3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1vh;
+    position: relative;
+    overflow: hidden;
 }
 .hero-block:hover{
     border-color: var(--white);
     transform: scale(1.02);
+}
+.hero-block:hover>.btn-create{
+    opacity: 1;
+    pointer-events: auto;
+}
+.hero-block:hover>.hero-btn{
+    opacity: 1;
+    transform: translateY(0vh);
+}
+.btn-create{
+    background-color: #2c323a;
+    text-decoration: none;
+    width: 90%;
+    height: 15%;
+    border-radius: .5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s ease-in-out;
+    opacity: 0;
+    pointer-events: none;   
+}
+#hero_block_2{
+    background-image: url(../img/Classes/Hero/unded.png);
+    background-size: cover;
+    background-position: -4vw 4vh;
+    background-repeat: no-repeat;
+}
+.hero-btn{
+    border: none;
+    background-color: #110b11ab;
+    width: 100%;
+    position: absolute;
+    height: 20%;
+    bottom: 0;
+    border-radius: 1vh;
+    transition: .3s ease-in-out;
+    opacity: 0;
+    transform: translateY(3vh);
 }
