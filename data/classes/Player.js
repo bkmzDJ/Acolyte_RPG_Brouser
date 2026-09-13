@@ -1,7 +1,6 @@
 import { RACES } from "./Races.js";
 import { LOCATION } from "./Location.js";
 import { CLASS } from "./Class.js";
-
 class Player {
     hp = 10
     damage = 0
@@ -26,6 +25,7 @@ class Player {
     stats(){
         this.hp = Math.floor(this.end*9.9)
         this.damage = Math.floor(this.str*0.9)
+        this.mindamage = Math.floor(this.damage - (this.damage/100)*15)
         this.mag = Math.floor(this.int*0.9)
         this.phresistance = Math.floor((this.armor * 100)/(this.armor + 1450)) // УБАЛАНСИТЬ ПОЗЖЕ 
         this.crete = Math.floor((this.agl * 100)/(this.agl + 1450))
@@ -60,7 +60,8 @@ console.log(`
   🧬 Раса:        ${player.race.name}
   ⚔️  Класс:       ${player.role.name}
   
-  🪓 Урон:         ${player.damage}
+  🪓 Урон:         ${player.mindamage+"-"+player.damage}
+  💖 Здоровье:     ${player.hp}
 
   💪 Сила:        ${player.str}
   🏃 Ловкость:    ${player.agl}

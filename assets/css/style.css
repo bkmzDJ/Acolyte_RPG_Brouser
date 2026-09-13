@@ -1,3 +1,52 @@
+@font-face {
+    font-family: "Satyr";
+    src: url(../font/SatyrSP\ Basic.otf);
+}
 *{
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+:root{
+    --black: #110b11;
+    --white: #D8D0C1;
+    --gray: #8C8175;
+    --red: #6E2C2C;
+    --blue: #3E4A5C;
+    --yellow: #A38F5A;
+    --gray: #5F664B;
+}
+.menu{
+    min-height: 100vh;
+    background-color: var(--black);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.acolyte{
+    position: absolute;
+    top: 5vh;
+}
+.acolyte>h1{
+    font-family: "Satyr";
+    letter-spacing: 7px;
+}
+.person-block{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3vw;
+}
+.hero-block{
+    border: 0.2vh solid var(--gray);
+    width: 25vw;
+    height: 50vh;
+    border-radius: 1vh;
+    transition: .3s ease-in-out;
+}
+.hero-block:hover{
+    border-color: var(--white);
+    transform: scale(1.02);
 }
